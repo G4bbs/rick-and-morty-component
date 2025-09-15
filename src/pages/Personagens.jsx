@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import useCharacters from "../hooks/useCharacters";
 import "./Personagens.css";
 
-// Funções para traduzir status e espécies
 function traduzStatus(status) {
   switch (status) {
     case "Alive":
@@ -31,7 +30,7 @@ function Personagens() {
   const { characters, loading, getCharacters } = useCharacters();
 
   useEffect(() => {
-    getCharacters(); // Carregar página 1 ao montar
+    getCharacters();
   }, []);
 
   return (
