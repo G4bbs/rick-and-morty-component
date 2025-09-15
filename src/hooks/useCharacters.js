@@ -7,22 +7,19 @@ function useCharacters() {
 
   async function getCharacters(page = 1) {
     setLoading(true);
-    const response = await API.get(`character?page=${page}`);
-    if (response.data) {
-      setCharacters(response.data.results);
-      setLoading(false);
-    }
-    if (response.error) {
-      console.log(response.error);
+    try {
+      const response = await API.get(`character?page=${page}`);
+      if (response.data) {
+        setCharacters(response.data.results);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar personagens:", error);
+    } finally {
       setLoading(false);
     }
   }
 
-  return {
-    characters,
-    loading,
-    getCharacters,
-  };
+  return { characters, loading, getCharacters };
 }
 
 export default useCharacters;
